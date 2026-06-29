@@ -10,7 +10,7 @@ DIMGRAY  = "#1A2340"
 WHITE    = "#E8F0FF"
 DARKBLUE = "#0A1628"
 
-# ─── Stars Background ─────────────────────────────────────────────────────────
+# ─── Stars Background 
 class StarField:
     def __init__(self, canvas):
         self.canvas = canvas
@@ -31,7 +31,7 @@ class StarField:
                 s[0] = random.randint(0, W)
             self.canvas.coords(s[4], s[0]-s[2], s[1]-s[2], s[0]+s[2], s[1]+s[2])
 
-# ─── Bullet ───────────────────────────────────────────────────────────────────
+# ─── Bullet 
 class Bullet:
     def __init__(self, canvas, x, y, dy=-14):
         self.canvas = canvas
@@ -54,7 +54,7 @@ class Bullet:
     def get_rect(self):
         return (self.x - 2, self.y - 10, self.x + 2, self.y)
 
-# ─── Explosion ────────────────────────────────────────────────────────────────
+# ─── Explosion
 class Explosion:
     def __init__(self, canvas, x, y):
         self.canvas  = canvas
@@ -75,14 +75,14 @@ class Explosion:
     def destroy(self):
         self.canvas.delete(self.ring)
 
-# ─── Enemy ────────────────────────────────────────────────────────────────────
+# ─── Enemy 
 class Enemy:
     def __init__(self, canvas, x, y, speed):
         self.canvas = canvas
         self.x, self.y = x, y
         self.alive  = True
         self.size   = 16
-        self.dy     = speed  # Configured dynamically by the current level difficulty
+        self.dy     = speed  
         s = self.size
         pts = [x, y-s, x+s, y, x, y+s, x-s, y]
         self.body = self.canvas.create_polygon(*pts, fill=DIMGRAY, outline=ACCENT2, width=2)
@@ -100,7 +100,7 @@ class Enemy:
         s = self.size
         return (self.x - s, self.y - s, self.x + s, self.y + s)
 
-# ─── Player ───────────────────────────────────────────────────────────────────
+# ─── Player 
 class Player:
     def __init__(self, canvas):
         self.canvas  = canvas
@@ -129,7 +129,7 @@ class Player:
     def get_rect(self):
         return (self.x - 15, self.y - 25, self.x + 15, self.y + 15)
 
-# ─── Game Manager ─────────────────────────────────────────────────────────────
+# ─── Game Manager 
 class Game:
     def __init__(self, root):
         self.root  = root
@@ -173,7 +173,7 @@ class Game:
         self.canvas.delete("all")
         self.state      = "playing"
         self.score      = 0
-        self.level      = 1  # Standard start point
+        self.level      = 1  
         self.enemies    = []
         self.bullets    = []
         self.explosions = []
@@ -193,7 +193,7 @@ class Game:
         self._loop()
 
     def _spawn_wave(self):
-        # ─── Level Scaling Configurations ─────────────────────────────────────
+        # ─── Level Scaling Configurations 
         if self.level == 1:
             rows, cols, speed, label = 2, 4, 0.6, "1 (EASY)"
         elif self.level == 2:
