@@ -72,7 +72,6 @@ class Explosion:
 
     def is_done(self):
         return self.life >= self.max_life
-
     def destroy(self):
         self.canvas.delete(self.ring)
 
@@ -84,7 +83,6 @@ class Enemy:
         self.alive  = True
         self.size   = 16
         self.dy     = speed  # Configured dynamically by the current level difficulty
-        
         s = self.size
         pts = [x, y-s, x+s, y, x, y+s, x-s, y]
         self.body = self.canvas.create_polygon(*pts, fill=DIMGRAY, outline=ACCENT2, width=2)
@@ -191,7 +189,6 @@ class Game:
 
         self.root.bind("<KeyPress>",   lambda e: self.keys.add(e.keysym.lower()))
         self.root.bind("<KeyRelease>", lambda e: self.keys.discard(e.keysym.lower()))
-
         self._spawn_wave()
         self._loop()
 
@@ -207,7 +204,6 @@ class Game:
             rows, cols, speed, label = 3, 9, 1.5, "4 (HARD)"
         else:  # Level 5 or higher
             rows, cols, speed, label = 4, 10, 1.9, "5 (VERY HARD)"
-
         self.canvas.itemconfig(self.level_val, text=f"LEVEL: {label}")
 
         # Centering calculations for the rows
@@ -220,7 +216,6 @@ class Game:
 
     def _loop(self):
         if self.state != "playing": return
-
         dx = dy = 0
         if "left"  in self.keys or "a" in self.keys: dx -= 1
         if "right" in self.keys or "d" in self.keys: dx += 1
