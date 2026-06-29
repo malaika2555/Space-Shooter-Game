@@ -1,12 +1,7 @@
-
 import tkinter as tk
 import random
-
-# ─── Constants ────────────────────────────────────────────────────────────────
 W, H = 800, 650
 FPS  = 30
-
-# Palette
 BG       = "#050A1A"
 ACCENT   = "#00CFFF"
 ACCENT2  = "#FF4D6D"
@@ -36,7 +31,6 @@ class StarField:
                 s[0] = random.randint(0, W)
             self.canvas.coords(s[4], s[0]-s[2], s[1]-s[2], s[0]+s[2], s[1]+s[2])
 
-
 # ─── Bullet ───────────────────────────────────────────────────────────────────
 class Bullet:
     def __init__(self, canvas, x, y, dy=-14):
@@ -60,7 +54,6 @@ class Bullet:
     def get_rect(self):
         return (self.x - 2, self.y - 10, self.x + 2, self.y)
 
-
 # ─── Explosion ────────────────────────────────────────────────────────────────
 class Explosion:
     def __init__(self, canvas, x, y):
@@ -82,7 +75,6 @@ class Explosion:
 
     def destroy(self):
         self.canvas.delete(self.ring)
-
 
 # ─── Enemy ────────────────────────────────────────────────────────────────────
 class Enemy:
@@ -109,7 +101,6 @@ class Enemy:
     def get_rect(self):
         s = self.size
         return (self.x - s, self.y - s, self.x + s, self.y + s)
-
 
 # ─── Player ───────────────────────────────────────────────────────────────────
 class Player:
@@ -139,7 +130,6 @@ class Player:
 
     def get_rect(self):
         return (self.x - 15, self.y - 25, self.x + 15, self.y + 15)
-
 
 # ─── Game Manager ─────────────────────────────────────────────────────────────
 class Game:
@@ -308,7 +298,6 @@ class Game:
         if self.state == "gameover":
             self.stars_bg.update()
             self.root.after(33, self._go_loop)
-
 
 if __name__ == "__main__":
     root = tk.Tk()
